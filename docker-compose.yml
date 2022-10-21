@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  api:
+    context: .
+    build: ./docker/api/Dockerfile
+
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=clean_architecture
+      - MYSQL_ROOT_PASSWORD=password
+
+    ports:
+      - 3306:3306
