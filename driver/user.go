@@ -9,9 +9,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
-func Serve(addr string)  {
+func Serve(addr string) {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_HOST"), os.Getenv("DB_PORT"), os.Getenv("DATABASE"))
 	conn, err := sql.Open("mysql", dsn)
 	if err != nil {
