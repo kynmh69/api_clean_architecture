@@ -4,12 +4,23 @@ services:
   api:
     context: .
     build: ./docker/api/Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./:/go/src/app
 
   db:
+    platform: linux/amd64
+    restart: on-failure
+    volumes:
+      - ./docker/mysql/mysql_init:/docker-entrypoint-initdb.d
+      - ./docker/mysql/mysql_data:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     image: mysql:latest
     environment:
       - MYSQL_DATABASE=clean_architecture
       - MYSQL_ROOT_PASSWORD=password
+      - TZ=Asia/Tokyo
 
     ports:
-      - 3306:3306
+      - 3307:3307
