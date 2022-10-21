@@ -1,6 +1,10 @@
 package driver
 
 import (
+	"ca/v2/adapter/controller"
+	"ca/v2/adapter/gateway"
+	"ca/v2/adapter/presenter"
+	"ca/v2/usecase/interactor"
 	"database/sql"
 	"fmt"
 	"log"
